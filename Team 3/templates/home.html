@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obesity Prediction Model Selection</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Disable body scrolling */
+            background: linear-gradient(to right, #f9c4d2, #a2e0ff); /* Smooth gradient background */
+        }
+
+        /* The wrapper for horizontal scrolling */
+        .scroll-wrapper {
+            display: flex;
+            width: 200%; /* Allows both pages to exist side by side */
+            height: 100vh; 
+            transition: transform 1s ease-in-out;
+        }
+
+        /* Each page section should take up the full screen width */
+        .section {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        /* Page 1: Obesity Description */
+        .info-page {
+            background-color: rgba(255, 255, 255, 0.303); 
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px; 
+            max-width: 90%;
+            text-align: center;
+            overflow-y: auto; 
+            max-height: 100vh; 
+            padding-top: 120px;
+        }
+
+        .info-page h1 {
+            font-size: 2.2rem; 
+            font-weight: 600;
+            color: #4C4C9A;
+            margin-bottom: 3px;
+        }
+
+        .info-page p {
+            font-size: 1.2rem;
+            color: #5d5d5d;
+            margin: 3px 0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-page img {
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-top: 3px;
+        }
+
+        .scroll-button {
+            margin-top: 20px;
+            background-color: #FF6F61;
+            padding: 15px 25px;
+            border-radius: 6px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .scroll-button:hover {
+            background-color: #e64a3c;
+        }
+
+        /* Page 2: Model Selection */
+        .model-page {
+            background-color: rgba(255, 255, 255, 0.532); 
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-bottom: 5px; 
+            overflow-y: auto; 
+            max-height: 100vh; 
+        }
+
+        .model-page h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #4C4C9A;
+            margin-bottom: 10px;
+        }
+
+        .model-page p {
+            font-size: 1.1rem;
+            color: #5d5d5d;
+            margin: 10px 0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Model options container - scrollable */
+        .model-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            overflow-y: auto; /* Allow vertical scrolling for the model cards */
+            max-height: 65vh; 
+            padding-top: 10px;
+            margin-bottom: 5px; 
+        }
+
+        .model-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 30px;
+            width: 40%;
+            max-width: 380px; /* Fixed card size */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 20px;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Make sure the text inside the model card is centered */
+        .model-card h3,
+        .model-card p,
+        .model-card button {
+            text-align: center; 
+            width: 100%;
+        }
+
+        .model-card h3 {
+            font-size: 1.8rem;
+            color: #2E2E8C;
+            margin-bottom: 15px;
+        }
+
+        .model-card p {
+            font-size: 1.1rem;
+            color: #777;
+            margin: 10px 0;
+        }
+
+        .model-card button {
+            background-color: #FF6F61;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+            display: block; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .model-card button:hover {
+            background-color: #e64a3c;
+            transform: scale(1.05);
+        }
+
+        /* Back Button */
+        .back-button {
+            background-color: #4C9A8C;
+            padding: 15px 30px;
+            border-radius: 6px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            margin-top: 30px;
+        }
+
+        .back-button:hover {
+            background-color: #3e7b6f;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Container for both sections -->
+<div class="scroll-wrapper" id="scroll-wrapper">
+
+    <!-- Page 1: Obesity Description -->
+    <div class="section info-page">
+        <div>
+            <h1>What is Obesity?</h1>
+            <p>Obesity is a medical condition where an individual has excessive body fat, which can lead to increased risks for many diseases, including diabetes, heart disease, and more.</p>
+            <p>Understanding your obesity level is important for taking preventive actions and managing your health effectively.</p>
+            <img src="https://cdn.pixabay.com/photo/2022/12/12/01/54/dietician-7649978_1280.png" alt="Obesity Image"><br>
+            <button class="scroll-button" id="scroll-button">Check Your Obesity Level</button>
+        </div>
+    </div>
+
+    <!-- Page 2: Model Selection -->
+    <div class="section model-page">
+        <div>
+            <h1>Select Your Prediction Model</h1>
+            <p>Choose a model to predict obesity based on different categories. Each model provides varying degrees of prediction granularity. Select the one that best suits your needs.</p>
+            
+            <!-- Model Options (displayed side by side) -->
+            <div class="model-options">
+                <!-- Model 1 - 4 Category Prediction -->
+                <div class="model-card">
+                    <h3>4-Category Classification</h3>
+                    <p>Classifies individuals into 4 categories: Underweight, Normal weight, Overweight, and Obesity.</p>
+                    <form action="/select_model" method="POST">
+                        <button name="model_type" value="4_category">Select this Model</button>
+                    </form>
+                </div>
+
+                <!-- Model 2 - 7 Category Prediction -->
+                <div class="model-card">
+                    <h3>7-Category CLassification</h3>
+                    <p>Classifies individuals into 7 categories: Insufficient Weight, Normal Weight, Obesity Type_I, Obesity Type II, Obesity Type III, Overweight Level I, and Overweight Level II.</p>
+                    <form action="/select_model" method="POST">
+                        <button name="model_type" value="7_category">Select this Model</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <button class="back-button" id="back-button">Back to Information Page</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Scroll handling script -->
+<script>
+    document.getElementById('scroll-button').addEventListener('click', function() {
+        document.getElementById('scroll-wrapper').style.transform = 'translateX(-100vw)';
+    });
+
+    document.getElementById('back-button').addEventListener('click', function() {
+        document.getElementById('scroll-wrapper').style.transform = 'translateX(0)';
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obesity Prediction Result</title>
+    <style>
+        /* Styling for the result page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f9c4d2, #a2e0ff); /* Soft pink to light blue gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: 100vh;
+            margin: 0;
+            background-attachment: fixed; /* Keeps the background fixed while scrolling */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.6); /* Transparent white background with opacity */
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            backdrop-filter: blur(12px); /* Apply a subtle blur effect behind the container */
+        }
+
+        h1 {
+            color: #4B0082; /* Deep purple for the title */
+            margin-bottom: 30px;
+            font-size: 2.4rem;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #FF5733; 
+            font-size: 1.8rem;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        h2.result-text {
+            color: #28a745; /* Green color for the prediction result */
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        /* Button Styles */
+        a {
+            display: inline-block;
+            margin-top: 40px;
+            text-decoration: none;
+            padding: 14px 25px;
+            background-color: #007bff; /* Bright blue */
+            color: white;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px); /* Lift effect on hover */
+        }
+
+        .orange-btn {
+            background-color: #FFA500; 
+            margin-top: 20px;
+            padding: 12px 25px;
+            color: white;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .orange-btn:hover {
+            background-color: #e68900; /* Darker orange on hover */
+            transform: translateY(-3px); /* Lift effect on hover */
+        }
+
+        /* Flexbox for horizontal button layout */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px; 
+        }
+
+        .button-container a {
+            margin: 0 10px; 
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 25px;
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            h2.result-text {
+                font-size: 1.8rem;
+            }
+
+            a,
+            .orange-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically on smaller screens */
+            }
+
+            .button-container a {
+                margin: 10px 0; /* Add vertical spacing between buttons on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Obesity Level Result</h1>
+        <h2>Your 7 Category Obesity Level Result:</h2>
+        <h2 class="result-text">{{ prediction_label }}</h2>
+        <p><strong>Suggestion:</strong> {{ suggestion_message }} <span>{{ suggestion_emoji }}</span></p>
+        <!-- Horizontal button container -->
+        <div class="button-container">
+            <!-- Go back to home page -->
+            <a href="/">Go Back to Home Page</a>
+        
+           
+            <a href="{{ url_for('form_7_category') }}" class="orange-btn">Check Obesity Level Again</a>
+        </div><br>
+        <p>Weight categories to help assess health:</p>
+
+        <p>1. Insufficient Weight: BMI below 18.5 – Your weight is lower than what’s healthy.</p>
+
+        <p>2. Normal Weight: BMI between 18.5 and 24.9 – Your weight is in the ideal range for good health.</p>
+
+        <p>3. Overweight Level I: BMI between 25.0 and 26.9 – Your weight is slightly above the healthy range.</p>
+  
+        <p>4. Overweight Level II: BMI between 27.0 and 29.9 – Your weight is moderately above the healthy range.</p>
+
+        <p>5. Obesity Type I: BMI between 30.0 and 34.9 – Your weight is much higher than healthy.</p>
+
+        <p>6. Obesity Type II: BMI between 35.0 and 39.9 – Your weight is significantly above healthy.</p>
+
+        <p>7. Obesity Type III: BMI 40.0 or more – Your weight is extremely above the healthy range.</p>
+    </div>
+</body>
+</html>
