@@ -42,5 +42,5 @@ obesity-prediction/
 - Responsive design for all devices
 - Beautiful and professional UI
 =======
-# OBESITY-LEVEL-PREDICTION-WEB-APP
+
 
