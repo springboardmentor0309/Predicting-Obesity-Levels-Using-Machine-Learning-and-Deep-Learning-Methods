@@ -34,6 +34,10 @@ obesity-prediction/
 
 4. Open your browser and navigate to `http://localhost:5000`
 
+## Live Demo
+
+Our Web-app is live at : https://obesity-level-prediction-web-app.onrender.com
+
 ## Features
 
 - User-friendly interface
