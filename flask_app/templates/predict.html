@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Obesity</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General page styling */
+        body {
+            background-color: #F2EBE5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Sleek Navigation Bar */
+        .navbar {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+	    position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Navbar Title Styling */
+        .navbar .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            display: flex;
+            align-items: center; /* Centers vertically */
+        }
+
+        /* Navbar Links Styling */
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #4e8cff;
+        }
+
+        /* Main content */
+        .main-content {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Adds spacing between fields */
+        }
+
+        .form-container label {
+            font-weight: bold;
+            color: #555;
+	    text-align: center;
+        }
+
+        .form-container input[type="number"],
+        .form-container select {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+	    text-align: center;
+        }
+
+        /* Submit button */
+        .predict-button {
+            padding: 10px;
+            background-color: #4e8cff;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .predict-button:hover {
+            background-color: #3b72e5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="title">Obesity Predictor</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predict</a>
+            <a href="/feedback">Feedback</a>
+            <a href="About">About</a>
+        </div>
+    </nav>
+
+    <!-- Prediction Form -->
+    <main class="main-content">
+        <h1 class="title">Enter Your Details</h1>
+        <form id="predictionForm" class="form-container" action="/predict" method="POST">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height_cm" required>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight_kg" required>
+
+            <label for="bmi">BMI:</label>
+            <input type="number" id="bmi" name="bmi" step="0.01" required>
+
+            <label for="physical_activity">Physical Activity Level:</label>
+            <input type="number" id="physical_activity" name="physical_activity_level" min="1" max="5" required>
+
+            <label for="diet_type">Diet Type:</label>
+            <select id="diet_type" name="diet_type" required>
+                <option value="">Select Type</option>
+                <option value="Non-Vegetarian">Non-Vegetarian</option>
+                <option value="Vegetarian">Vegetarian</option>
+            </select>
+
+            <label for="smoking_habits">Smoking Habits:</label>
+            <select id="smoking_habits" name="smoking_habits" required>
+                <option value="">Select Option</option>
+                <option value="Non-smoker">Non-smoker</option>
+                <option value="Occasional Smoker">Occasional Smoker</option>
+                <option value="Regular Smoker">Regular Smoker</option>
+            </select>
+
+            <label for="alcohol_consumption">Alcohol Consumption:</label>
+            <select id="alcohol_consumption" name="alcohol_consumption" required>
+                <option value="">Select Option</option>
+                <option value="Non-drinker">Non-drinker</option>
+                <option value="Drinks Occasionally">Drinks Occasionally</option>
+            </select>
+
+            <label for="family_history">Family History of Obesity:</label>
+            <select id="family_history" name="family_history_obesity" required>
+                <option value="">Select Option</option>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label for="blood_pressure">Blood Pressure:</label>
+            <select id="blood_pressure" name="blood_pressure" required>
+                <option value="">Select Blood Pressure Level</option>
+                <option value="Normal">Normal</option>
+                <option value="Elevated">Elevated</option>
+                <option value="Hypertension Stage 1">Hypertension Stage 1</option>
+                <option value="Hypertension Stage 2">Hypertension Stage 2</option>
+            </select>
+
+            <label for="cholesterol">Cholesterol Levels:</label>
+            <select id="cholesterol" name="cholesterol_levels" required>
+                <option value="">Select Cholesterol Level</option>
+                <option value="Normal">Normal</option>
+                <option value="Borderline">Borderline</option>
+                <option value="High">High</option>
+            </select>
+
+            <label for="education">Education Level:</label>
+            <select id="education" name="education_level" required>
+                <option value="">Select Education Level</option>
+                <option value="Primary">Primary</option>
+                <option value="Secondary">Secondary</option>
+                <option value="Higher Education">Higher Education</option>
+            </select>
+
+            <label for="income">Income Level:</label>
+            <select id="income" name="income_level" required>
+                <option value="">Select Income Level</option>
+                <option value="Low">Low</option>
+                <option value="Middle">Middle</option>
+                <option value="High">High</option>
+            </select>
+
+            <label for="region">Geographical Region:</label>
+            <select id="region" name="geographical_region" required>
+                <option value="">Select Region</option>
+                <option value="Urban">Urban</option>
+                <option value="Suburban">Suburban</option>
+                <option value="Rural">Rural</option>
+            </select>
+
+            <button type="submit" class="predict-button">Submit</button>
+        </form>
+    </main>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Here you can gather the form data. For simplicity, let's assume the prediction logic is implemented
+            // and you have the result ready (in a real scenario, you would likely send this data to a backend server).
+
+            // For demonstration, let's assume the obesity status is based on some input.
+            let obesityStatus = "Overweight"; // Replace with actual prediction logic
+
+            // Store the obesity status in localStorage (or use any other method to pass data)
+            localStorage.setItem('obesityStatus', obesityStatus);
+            
+            // Redirect to the results page
+            window.location.href = 'result.html'; // Ensure this matches your results page name
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Obesity Predictor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General page styling */
+        body {
+            background-color: #F2EBE5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Sleek Navigation Bar */
+        .navbar {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #4e8cff;
+        }
+
+        /* About Section Styling */
+        .about-section {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .about-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .about-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Image and Stats Section */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .stat {
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4e8cff;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #4e8cff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #3b72e5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="title">Obesity Predictor</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predict</a>
+            <a href="/feedback">Feedback</a>
+            <a href="About">About</a>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <main class="about-section">
+        <h2 class="about-title">About Obesity Predictor</h2>
+        <p class="about-text">
+            Obesity is a complex health issue resulting from a combination of various factors, including genetics, environment, and lifestyle choices. It is defined as an abnormal or excessive fat accumulation that presents a risk to health. This condition can lead to serious health problems, including heart disease, diabetes, and certain cancers.
+        </p>
+        <p class="about-text">
+            Our Obesity Predictor uses advanced deep learning algorithms to analyze various health parameters and provide personalized predictions. By inputting your details, our model leverages patterns in the data to estimate your likelihood of obesity, empowering you to take control of your health.
+        </p>
+
+        <!-- Statistics Section -->
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-number">40%</div>
+                <div class="stat-label">Adults are Obese</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1 in 5</div>
+                <div class="stat-label">Children are Obese</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">60%</div>
+                <div class="stat-label">of Adults Overweight</div>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="window.location.href='predict.html'">Start Predicting Now</button>
+    </main>
+</body>
+</html>

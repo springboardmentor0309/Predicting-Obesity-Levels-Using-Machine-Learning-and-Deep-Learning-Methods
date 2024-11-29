@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obesity Predictor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #F2EBE5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #4e8cff;
+        }
+
+    /* Hero Section with Background Image */
+    .hero {
+        width: 100%;
+        padding: 100px 30px;
+        text-align: center;
+        background-image: url("{{ url_for('static', filename='images/home_page_people.png') }}");
+        background-size: cover; /* Ensures the image covers the section */
+        background-position: center top; /* Aligns the top of the image with the top of the section */
+        background-repeat: no-repeat;
+        min-height: 400px; /* Ensures the hero section has a minimum height */
+        color: white;
+        position: relative;
+        overflow: hidden; /* Ensures any overflow is hidden */
+	margin: 40px;
+    }
+
+    /* Adjust the hero section to crop the bottom 30% of the image */
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: -30%; /* Move the top of the image up by 30% of its height */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4); /* Dark overlay for text contrast */
+    }
+
+    .hero-content {
+        position: absolute; /* Use absolute positioning */
+        top: 60%; /* Move to the vertical center */
+        left: 50%; /* Move to the horizontal center */
+        transform: translate(-50%, -50%); /* Center the element */
+        display: flex; /* Flexbox layout for child elements */
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items vertically */
+        z-index: 1; /* Ensure content is above the background */
+    }
+
+    .hero-title {
+        font-size: 42px;
+        margin: 0;
+    }
+
+    .hero-tagline {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .hero-button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background-color: #4e8cff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+    }
+
+    .hero-button:hover {
+        background-color: #3b6bc2;
+    }
+
+
+        /* Feature Section */
+        .features {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-title {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            color: #4e8cff;
+        }
+
+        /* Footer */
+        .footer {
+            width: 100%;
+            background-color: #333;
+            color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-links a {
+            color: #4e8cff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-title">Obesity Predictor</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predict</a>
+            <a href="/feedback">Feedback</a>
+            <a href="About">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to the Obesity Predictor</h1>
+            <p class="hero-tagline">Empowering you to take control of your health</p>
+            <a href="/predict" class="hero-button">Start Prediction</a>
+        </div>
+    </section>
+
+    <!-- Feature Section -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Predict Obesity</h3>
+            <p>Use our AI-powered tool to predict your obesity risk.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📖</div>
+            <h3 class="feature-title">Learn Healthy Habits</h3>
+            <p>Access resources on maintaining a healthy lifestyle.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3 class="feature-title">Personal Insights</h3>
+            <p>Gain insights based on your personal health data.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Obesity Predictor</p>
+        <div class="footer-links">
+            <a href="About">Privacy Policy</a>
+            <a href="About">Terms of Service</a>
+            <a href="About">Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>

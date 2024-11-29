@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obesity Prediction Result</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General page styling */
+        body {
+            background-color: #F2EBE5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Sleek Navigation Bar */
+        .navbar {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #4e8cff;
+        }
+
+        /* Result Section Styling */
+        .result-section {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .result-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .result-status {
+            font-size: 24px;
+            color: #4e8cff;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .result-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Resources Section */
+        .resources {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .resource {
+            margin: 10px 0;
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #4e8cff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #3b72e5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="title">Obesity Predictor</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/predict">Predict</a>
+            <a href="/feedback">Feedback</a>
+            <a href="About">About</a>
+        </div>
+    </nav>
+
+    <!-- Result Section -->
+    <main class="result-section">
+        <h2 class="result-title">Your Obesity Prediction Result</h2>
+        <div class="result-status">Status: <span id="obesityStatus">{{ obesity_status }}</span></div>
+
+        <p class="result-text">
+            Based on the information provided, your current obesity status is <strong>{{ obesity_status }}</strong>. 
+            It's important to be proactive about your health. Below are some resources to help you improve your health:
+        </p>
+
+        <!-- Resources Section -->
+        <div class="resources">
+            <h3>Recommended Resources:</h3>
+            <div class="resource">
+                <a href="guide.pdf" target="_blank">1. Healthy Eating Guide (PDF)</a>
+            </div>
+            <div class="resource">
+                <a href="workout_plan.pdf" target="_blank">2. Beginner's Workout Plan (PDF)</a>
+            </div>
+            <div class="resource">
+                <a href="nutrition_tips.pdf" target="_blank">3. Nutrition Tips for Healthy Living (PDF)</a>
+            </div>
+            <div class="resource">
+                <a href="mental_health.pdf" target="_blank">4. Mental Health and Wellbeing (PDF)</a>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="window.location.href='/'">Go Back to Prediction</button>
+
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve the obesity status from localStorage
+            const obesityStatus = localStorage.getItem('obesityStatus');
+            
+            // Only update if obesityStatus exists in localStorage and is not "Unknown"
+            if (obesityStatus && obesityStatus !== "Unknown") {
+                document.getElementById('obesityStatus').textContent = obesityStatus;
+            }
+            
+            // Optional: Clear the data from localStorage after retrieving it, if you want it to be a one-time read
+            localStorage.removeItem('obesityStatus');
+        });
+    </script>
+</body>
+</html>
